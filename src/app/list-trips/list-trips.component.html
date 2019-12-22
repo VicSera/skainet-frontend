@@ -1,0 +1,27 @@
+<table border="1">
+    <caption>Trips</caption>
+    <thead>
+        <tr>
+            <th>trip id</th>
+            <th>driver id</th>
+            <th>date</th>
+            <th>passengers</th>
+            <th>location</th>
+            <th>comment</th>
+            <th>To Skai</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- for (Trip trip: trips) -->
+        <tr *ngFor="let trip of trips">
+            <td>{{trip.tripId}}</td>
+            <td>{{trip.driverId}}</td>
+            <td>{{trip.date | date}}</td>
+            <td>{{trip.numPassengers}}</td>
+            <td>{{trip.location}}</td>
+            <td>{{trip.comment}}</td>
+            <td>{{trip.go}}</td>
+        </tr>
+    </tbody>
+
+</table>
