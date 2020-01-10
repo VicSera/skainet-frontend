@@ -1,0 +1,29 @@
+.welcome-message {
+    /* margin: auto; */
+    margin-top: 3cm;
+    margin-bottom: 3cm;
+    text-align: center;
+    font-size: xx-large;
+    background-color: grey;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.trip-link {
+    margin: auto;
+    /* margin-top; */
+    text-align: center;
+    font-size: 50px;
+    background-color: grey;
+    width: 50%;
+}
+  
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: white;
+}

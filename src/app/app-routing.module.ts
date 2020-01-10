@@ -4,13 +4,22 @@ import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorComponent } from './error/error.component';
 import { ListTripsComponent } from './list-trips/list-trips.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RouteGuardService } from './service/route-guard.service';
+import { TripComponent } from './trip/trip.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
   { path:'', component: LoginComponent },
   { path:'login', component: LoginComponent },
-  { path:'welcome/:name', component: WelcomeComponent },
-  { path:'trips', component: ListTripsComponent },
+  { path:'register', component: RegisterComponent },
+  { path:'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
+  { path:'welcome', component: WelcomeComponent, canActivate: [RouteGuardService] },
+  { path:'welcome/:name', component: WelcomeComponent, canActivate: [RouteGuardService] },
+  { path:'trips', component: ListTripsComponent, canActivate: [RouteGuardService] },
+  { path:'trips/:tripId' , component: TripComponent, canActivate: [RouteGuardService] },
+  
   { path:'**', component: ErrorComponent }
 ];
 

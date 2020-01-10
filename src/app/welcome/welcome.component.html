@@ -1,6 +1,12 @@
-<div>
-    Welcome to the SkaiNET, {{ name }}!
-</div>
-<div>
-    You can see trips <a routerLink="/trips">here</a>
+<div class="container">
+    <div class="welcome-message">
+        Welcome to the SkaiNET, {{ user.firstName }}!
+    </div>
+    <div>
+        <a routerLink="/trips">
+            <div class="trip-link">
+                <label>View trips</label>
+            </div>
+        </a>
+    </div>
 </div>

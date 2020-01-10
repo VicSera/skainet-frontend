@@ -10,6 +10,11 @@ import { ErrorComponent } from './error/error.component';
 import { ListTripsComponent } from './list-trips/list-trips.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
+import { LogoutComponent } from './logout/logout.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TripComponent } from './trip/trip.component';
+import { HttpInterceptorBasicAuthenticationService } from './service/http-interceptor-basic-authentication.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +24,24 @@ import { FooterComponent } from './footer/footer.component';
     ErrorComponent,
     ListTripsComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutComponent,
+    TripComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: HttpInterceptorBasicAuthenticationService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

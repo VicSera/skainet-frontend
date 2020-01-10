@@ -1,17 +1,17 @@
 <header>
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div>
-            <a href="https://www.skainet.com">SkaiNET</a>
+            <a href="https://www.skainet.com" class="navbar-brand">SkaiNET</a>
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="/welcome/victor" class="nav-link"></a>Home</li>
-            <li><a href="/trips" class="nav-link"></a>Trips</li>
+            <li><a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/welcome" class="nav-link">Home</a></li>
+            <li><a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/trips" class="nav-link">Trips</a></li>
         </ul>
 
-        <ul class="navbar-nav">
-            <li><a href="/login" class="nav-link"></a>Login</li>
-            <li><a href="/logout" class="nav-link"></a>Logout</li>
+        <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
         </ul>
     </nav>
 </header>

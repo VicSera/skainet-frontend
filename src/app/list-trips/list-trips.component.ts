@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
+import { TripDataService } from '../service/data/trip-data.service';
+import { Router } from '@angular/router';
 
 export class Trip {
   constructor(
-    public tripId : number,
+    public id : number,
     public driverId : number,
     public date: Date,
-    // public time: Time,
-    public numPassengers: number,
+    public maxPassengers: number,
     public location: string,
     public comment: string,
     public go: boolean
@@ -21,17 +22,45 @@ export class Trip {
 })
 export class ListTripsComponent implements OnInit {
 
-  trips = [
-    new Trip(1, 1, new Date(), 10, 'Gara', 'No Comment', true),
-    new Trip(2, 2, new Date(), 6, 'Taietura', 'Asd Qwe', false),
-    new Trip(3, 2, new Date(), 1, 'Gara', 'No Comment', false),
-    new Trip(4, 3, new Date(), 4, 'Floresti', 'No Comment', true),
-    new Trip(5, 1, new Date(), 6, 'Floresti', 'No Comment', true)
-  ]
+  trips = []
+  message : String = ''
 
-  constructor() { }
+  constructor(
+    private tripService : TripDataService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
+    this.refreshTrips()
+  }
+
+  deleteTrip(tripId) {
+    console.log(`delete trip ${tripId}`)
+    this.tripService.deleteTrip(tripId).subscribe(
+      response => {
+        console.log(response);
+        this.message = 'Deleted!';
+        this.refreshTrips();
+      }
+    )
+  }
+
+  viewTrip(tripId) {
+    console.log(`update trip ${tripId}`);
+    this.router.navigate(['trips', tripId]);
+  }
+
+  refreshTrips() {
+    this.tripService.retrieveAllTrips('placeholder').subscribe(
+      response => {
+        console.log(response);
+        this.trips = response;
+      }
+    );
+  }
+
+  addTrip() {
+    this.router.navigate(['trips', 0]);
   }
 
 }

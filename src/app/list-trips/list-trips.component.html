@@ -1,27 +1,44 @@
-<table border="1">
-    <caption>Trips</caption>
-    <thead>
-        <tr>
-            <th>trip id</th>
-            <th>driver id</th>
-            <th>date</th>
-            <th>passengers</th>
-            <th>location</th>
-            <th>comment</th>
-            <th>To Skai</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- for (Trip trip: trips) -->
-        <tr *ngFor="let trip of trips">
-            <td>{{trip.tripId}}</td>
-            <td>{{trip.driverId}}</td>
-            <td>{{trip.date | date}}</td>
-            <td>{{trip.numPassengers}}</td>
-            <td>{{trip.location}}</td>
-            <td>{{trip.comment}}</td>
-            <td>{{trip.go}}</td>
-        </tr>
-    </tbody>
+<div class="alert alert-success" *ngIf="message">{{message}}</div>
 
-</table>
+<div class="container">
+    <div *ngFor="let trip of trips" class="trip-container">
+        {{trip.date | date}}
+        {{trip.maxPassengers}}
+        {{trip.location}}
+        {{trip.comment}}
+        {{trip.go}}
+        <button (click)="viewTrip(trip.id)" class="btn btn-success">View</button>
+        <button (click)="deleteTrip(trip.id)" class="btn btn-warning">Delete</button>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table">
+        <!-- <caption>Trips</caption> -->
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>passengers</th>
+                <th>location</th>
+                <th>comment</th>
+                <th>To Skai</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- for (Trip trip: trips) -->
+            <tr *ngFor="let trip of trips">
+                <td>{{trip.date | date}}</td>
+                <td>{{trip.maxPassengers}}</td>
+                <td>{{trip.location}}</td>
+                <td>{{trip.comment}}</td>
+                <td>{{trip.go}}</td>
+                <td><button (click)="viewTrip(trip.id)" class="btn btn-success">View</button></td>
+                <td><button (click)="deleteTrip(trip.id)" class="btn btn-warning">Delete</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <button (click)="addTrip()" class="btn btn-success">Add a trip</button>
+</div>
