@@ -1,18 +1,16 @@
 <div class="alert alert-success" *ngIf="message">{{message}}</div>
 
-<div class="container">
-    <div *ngFor="let trip of trips" class="trip-container">
-        {{trip.date | date}}
-        {{trip.maxPassengers}}
-        {{trip.location}}
-        {{trip.comment}}
-        {{trip.go}}
-        <button (click)="viewTrip(trip.id)" class="btn btn-success">View</button>
-        <button (click)="deleteTrip(trip.id)" class="btn btn-warning">Delete</button>
+<div ngbDropdown class="d-inline-block">
+    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
     </div>
 </div>
 
 <div class="container">
+    <!-- <dropdown -->
     <table class="table">
         <!-- <caption>Trips</caption> -->
         <thead>

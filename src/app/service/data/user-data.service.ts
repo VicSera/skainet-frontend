@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class User {
   constructor(
-    id : number,
-    firstName : String,
+    public id : number,
+    public firstName : String,
     lastName : String,
     username : String,
     password : String,

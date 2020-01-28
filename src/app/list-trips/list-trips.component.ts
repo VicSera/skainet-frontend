@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Time } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TripDataService } from '../service/data/trip-data.service';
 import { Router } from '@angular/router';
+import { User } from '../service/data/user-data.service';
 
 export class Trip {
   constructor(
     public id : number,
-    public driverId : number,
+    public driver : User,
     public date: Date,
     public maxPassengers: number,
     public location: string,
@@ -27,11 +27,13 @@ export class ListTripsComponent implements OnInit {
 
   constructor(
     private tripService : TripDataService,
-    private router : Router
+    private router : Router,
+    private changeDetector : ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this.refreshTrips()
+    console.log('ngOnInitCalled');
+    this.refreshTrips();
   }
 
   deleteTrip(tripId) {
@@ -40,6 +42,10 @@ export class ListTripsComponent implements OnInit {
       response => {
         console.log(response);
         this.message = 'Deleted!';
+        this.refreshTrips();
+      },
+      error => {
+        console.log(error)
         this.refreshTrips();
       }
     )
@@ -51,10 +57,11 @@ export class ListTripsComponent implements OnInit {
   }
 
   refreshTrips() {
-    this.tripService.retrieveAllTrips('placeholder').subscribe(
+    this.tripService.retrieveAllTrips().subscribe(
       response => {
-        console.log(response);
         this.trips = response;
+        this.changeDetector.detectChanges();
+        console.log(this.trips);
       }
     );
   }

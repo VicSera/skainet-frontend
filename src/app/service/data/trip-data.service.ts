@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Trip } from 'src/app/list-trips/list-trips.component';
+import { User } from './user-data.service';
 
 class TripWithoutId {
-  // public driverId : number;
+  public driver : User;
   public date: Date;
   public maxPassengers: number;
   public location: string;
@@ -11,7 +12,7 @@ class TripWithoutId {
   public go: boolean;
 
   constructor(trip : Trip) {
-    // this.driverId = trip.driverId;
+    this.driver = trip.driver;
     this.date = trip.date;
     this.maxPassengers = trip.maxPassengers;
     this.location = trip.location;
@@ -29,7 +30,7 @@ export class TripDataService {
     private http : HttpClient
   ) { }
 
-  retrieveAllTrips(username : String) {
+  retrieveAllTrips() {
     return this.http.get<Trip[]>(`http://localhost:8080/trips`);
   }
 

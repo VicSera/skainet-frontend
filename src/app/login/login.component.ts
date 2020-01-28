@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,10 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username : string = 'sampleusername'
-  password : string = ''
-  errorMessage : string = 'Invalid Credentials'
-  invalidLogin : boolean = false
+  username : string = '';
+  password : string = '';
+  errorMessage : string = 'Invalid Credentials';
+  invalidLogin : boolean = false;
 
   constructor(
     private router: Router, 
@@ -25,22 +26,22 @@ export class LoginComponent implements OnInit {
 
   handleLogin() : void {
     this.authenticationService.authenticate(this.username, this.password).subscribe(
-      response => this.handleResponse(response)
+      response => this.handleResponse(response),
+      error => this.handleError(error)
     )
     // console.log(this.username);
   }
 
   handleResponse(response) {
-    if (response) {
-      this.invalidLogin = false;
-      sessionStorage.setItem('authenticatedUser', this.username);
+    this.invalidLogin = false;
+    sessionStorage.setItem('authenticatedUser', this.username);
 
-      this.router.navigate(['welcome', this.username]);
-    }
-    else {
-      this.invalidLogin = true;
-      this.password = '';
-    }
+    this.router.navigate(['welcome', this.username]);
+  }
+
+  handleError(error) {
+    this.invalidLogin = true;
+    this.password = '';
   }
 
   register() {

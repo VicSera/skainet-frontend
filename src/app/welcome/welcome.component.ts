@@ -12,6 +12,7 @@ import { AuthenticationService } from '../service/authentication.service';
 export class WelcomeComponent implements OnInit {
 
   private user : User;
+  private name : String;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,24 +21,19 @@ export class WelcomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    // console.log(this.route.snapshot.params['name'])
     let pathUsername = this.route.snapshot.params['name'];
-    let actualUsername = sessionStorage.getItem('authenticatedUser')
+    let actualUsername = sessionStorage.getItem('authenticatedUser');
+    this.name = "";
 
-    this.user = this.authenticationService.getLoggedInUser()
-    console.log(this.user.firstname)
+    this.authenticationService.getLoggedInUser().subscribe(
+      user => {
+        this.user = user;
+        this.name = this.user.firstName;
+      }
+    )
 
     if (!pathUsername || pathUsername != actualUsername) {
       this.router.navigate(['welcome', actualUsername]);
     }
   }
-
-  handleSuccessfulResponse(response) {
-    this.welcomeMessage = response.message;
-  }
-
-  handleErrorResponse(error) {
-    this.welcomeMessage = error.error.message;
-  }
-
 }

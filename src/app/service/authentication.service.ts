@@ -7,8 +7,6 @@ import { User } from './data/user-data.service';
 })
 export class AuthenticationService {
 
-  private authenticatedUser : User;
-
   constructor(
     private http : HttpClient
   ) { }
@@ -18,13 +16,6 @@ export class AuthenticationService {
       username: username,
       password: password
     })
-
-    request.subscribe(
-      response => {
-        if (response)
-          this.authenticatedUser = response;
-      }
-    )
 
     return request;
   }
@@ -39,9 +30,8 @@ export class AuthenticationService {
   }
 
   getLoggedInUser() {
-    // let username = sessionStorage.getItem('authenticatedUser');
+    let username = sessionStorage.getItem('authenticatedUser');
 
-    // return username;
-    return this.authenticatedUser;
+    return this.http.get<User>(`http://localhost:8080/users/byusername/${username}`)
   }
 }
