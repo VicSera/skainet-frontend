@@ -23,7 +23,13 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     console.log(this.user);
     this.userService.addUser(this.user).subscribe(
-      response => console.log(response)
+      response => {
+        console.log(response)
+        this.router.navigate(["/login"]);
+      },
+      error => {
+        console.log(error)
+      }
     );
   }
 

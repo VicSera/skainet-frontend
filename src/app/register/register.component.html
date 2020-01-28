@@ -1,36 +1,39 @@
 <div class="container">
-    <form (ngSubmit)="!registerForm.invalid && registerUser()" #registerForm="ngForm">
-        <fieldset class="form-group">
-            <label>Username</label>
-            <input type="text" [(ngModel)]="user.username" 
-            name="username" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Password</label>
-            <input type="password" [(ngModel)]="user.password"
-            name="password" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>First Name</label>
-            <input type="string" [(ngModel)]="user.firstName"
-            name="firstname" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Last Name</label>
-            <input type="text" [(ngModel)]="user.lastName"
-            name="lastname" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Phone Number (optional)</label>
-            <input type="text" [(ngModel)]="user.phoneNumber"
-            name="phone_number" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Usual Location (optional)</label>
-            <input type="text" [(ngModel)]="user.usualLocation"
-            name="usual_location" class="form-control">
-        </fieldset>
-
-        <button type="submit" class="btn btn-success">Register</button>
-    </form>
+    <div class="registration-form">
+        <form (ngSubmit)="!registerForm.invalid && registerUser()" #registerForm="ngForm">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" [(ngModel)]="user.username" 
+                name="username" required="required" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" [(ngModel)]="user.password"
+                name="password" required="required" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="string" [(ngModel)]="user.firstName"
+                name="firstname" required="required" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" [(ngModel)]="user.lastName"
+                name="lastname" required="required" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone Number (optional)</label>
+                <input type="text" [(ngModel)]="user.phoneNumber"
+                name="phone_number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Usual Location (optional)</label>
+                <input type="text" [(ngModel)]="user.usualLocation"
+                name="usual_location" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+        </form>
+    </div>
 </div>
