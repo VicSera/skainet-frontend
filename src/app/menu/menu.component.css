@@ -12,5 +12,9 @@ nav {
 }
 
 a {
-    font-size: larger;
+    font-size: 25px;
+    background: linear-gradient(45deg, rgba(148,50,162,1) 0%, rgba(78,59,199,1) 50%, rgba(9,161,224,1) 100%);
+    background-clip: initial;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
