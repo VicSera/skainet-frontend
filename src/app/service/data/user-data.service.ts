@@ -5,11 +5,11 @@ export class User {
   constructor(
     public id : number,
     public firstName : String,
-    lastName : String,
-    username : String,
+    public lastName : String,
+    public username : String,
     password : String,
-    phoneNumber : String,
-    usualLocation : String
+    public phoneNumber : String,
+    public usualLocation : String
   ) {}
 }
 

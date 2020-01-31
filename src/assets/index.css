@@ -7,3 +7,17 @@
     background: linear-gradient(138deg, rgba(148,50,162,1) 0%, rgba(78,59,199,1) 50%, rgba(9,161,224,1) 100%);
     /* background: radial-gradient(circle, #d340e6 0%, #085fece8 100%); */
 }
+
+* {
+    color: rgb(88, 19, 97);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+.skai-container {
+    border-radius: 30px;
+    border: 1px solid indigo;
+    max-width: 60%;
+    background: white;
+
+}

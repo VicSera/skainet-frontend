@@ -13,7 +13,10 @@
             </div>
             <div class="form-group">
                 <label>First Name</label>
-                <input type="string" [(ngModel)]="user.firstName"
+                <!-- <div *ngIf="!form.valid"> -->
+                    <!-- <label>Invalid!</label>
+                </div> -->
+                <input type="string" [(ngModel)]="user.firstName" id="firstname"
                 name="firstname" required="required" class="form-control">
             </div>
             <div class="form-group">
