@@ -1,3 +1,7 @@
 .ng-invalid:not(form) {
     background-color: tomato;
 }
+
+.skai-container {
+    margin: auto;
+}

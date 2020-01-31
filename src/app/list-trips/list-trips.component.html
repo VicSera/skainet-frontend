@@ -2,26 +2,34 @@
 
 <div class="container">
     <!-- <dropdown -->
-    <button (click)="addTrip()" class="btn add-trip">Add a trip</button>
+    <div id="toolbar">
+        <button (click)="addTrip()" class="btn add-trip">
+            <i class="material-icons">add</i>
+        </button>
+        <button class="btn add-trip">
+            <i class="material-icons">keyboard_arrow_left</i>
+        </button>
+        <button class="btn add-trip">
+            <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+    </div>
 
     <div class="trip-list">
-        <div *ngFor="let trip of trips" class="skai-container trip">
+        <button *ngFor="let trip of trips" class="skai-container trip" (click)="viewTrip(trip.id)">
             <div class="trip date">
                 {{trip.date | date}}
             </div>
             <div>
                 Driven by: {{trip.driver.username}}
             </div>
-            {{trip.maxPassengers}}
+                Remaining seats: {{trip.maxPassengers}}
             <br>
-            {{trip.location}}
+                From: {{trip.location}}
             <br>
-            {{trip.comment}}
-            <br>
-            {{trip.go}}
-            <br>
-            <button (click)="viewTrip(trip.id)" class="btn view-trip-button">View</button>
-        </div>
+                To: Placeholder
+            <!-- <br> -->
+            <!-- <button (click)="viewTrip(trip.id)" class="btn view-trip-button">View</button> -->
+        </button>
     </div>
     <!-- <table class="table">
         <caption>Trips</caption>
