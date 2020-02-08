@@ -3,13 +3,13 @@
 <div class="container">
     <!-- <dropdown -->
     <div id="toolbar">
-        <button (click)="addTrip()" class="btn add-trip">
+        <button (click)="addTrip()" class="btn toolbar">
             <i class="material-icons">add</i>
         </button>
-        <button class="btn add-trip">
+        <button class="btn toolbar">
             <i class="material-icons">keyboard_arrow_left</i>
         </button>
-        <button class="btn add-trip">
+        <button class="btn toolbar">
             <i class="material-icons">keyboard_arrow_right</i>
         </button>
     </div>
@@ -17,16 +17,16 @@
     <div class="trip-list">
         <button *ngFor="let trip of trips" class="skai-container trip" (click)="viewTrip(trip.id)">
             <div class="trip date">
-                {{trip.date | date}}
+                {{trip.dateTime | date}}
             </div>
             <div>
                 Driven by: {{trip.driver.username}}
             </div>
                 Remaining seats: {{trip.maxPassengers}}
             <br>
-                From: {{trip.location}}
+                From: {{trip.startingLocation}}
             <br>
-                To: Placeholder
+                To: {{trip.destination}}
             <!-- <br> -->
             <!-- <button (click)="viewTrip(trip.id)" class="btn view-trip-button">View</button> -->
         </button>

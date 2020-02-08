@@ -16,6 +16,8 @@ import { TripComponent } from './trip/trip.component';
 import { HttpInterceptorBasicAuthenticationService } from './service/http-interceptor-basic-authentication.service';
 import { RegisterComponent } from './register/register.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     {

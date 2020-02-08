@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserWithoutId, UserDataService } from '../service/data/user-data.service';
+import { User, UserDataService } from '../service/data/user-data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  private user : UserWithoutId;
+  private user : User;
 
   constructor(
     private router : Router,
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = new UserWithoutId("", "", "", "", "", "");
+    this.user = new User();
   }
 
   registerUser() {

@@ -3,24 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Trip } from 'src/app/list-trips/list-trips.component';
 import { User } from './user-data.service';
 
-class TripWithoutId {
-  public driver : User;
-  public date: Date;
-  public maxPassengers: number;
-  public location: string;
-  public comment: string;
-  public go: boolean;
-
-  constructor(trip : Trip) {
-    this.driver = trip.driver;
-    this.date = trip.date;
-    this.maxPassengers = trip.maxPassengers;
-    this.location = trip.location;
-    this.comment = trip.comment;
-    this.go = trip.go;
-  }
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -47,8 +29,8 @@ export class TripDataService {
   }
 
   createTrip(trip : Trip) {
-    let tripWithoutId = new TripWithoutId(trip);
+    delete trip.id;
 
-    return this.http.post<TripWithoutId>('http://localhost:8080/trips', tripWithoutId);
+    return this.http.post<Trip>('http://localhost:8080/trips', trip);
   }
 }

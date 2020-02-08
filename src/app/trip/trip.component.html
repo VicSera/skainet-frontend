@@ -1,33 +1,58 @@
-<h1>{{driverUser.firstName}}'s Trip</h1>
+<div id="trip-driver">
+    {{driverUser.firstName}}'s Trip
+</div>
 
-<div class="container" *ngIf="enableEdit">
-    <form (ngSubmit)="!tripForm.invalid && saveChangesToTrip()" #tripForm="ngForm">
+<div class="skai-container" *ngIf="enableEdit">
+    <form (ngSubmit)="!tripForm.invalid && saveChangesToTrip()" #tripForm="ngForm" id="create-trip">
+        <div id="location-picker">
+            <i class="material-icons" *ngIf="toSkai">check_circle</i>
+            <i class="material-icons" *ngIf="!toSkai">panorama_fish_eye</i>
+            <button class="location-option" type="button" (click)="chooseSkai()">
+                <img src="assets/skai_cropped.png">
+            </button>
+        </div>
+        <div id="location-picker">
+            <button class="location-option" type="button" (click)="chooseMountain()">
+                <img src="https://img.icons8.com/ios/100/000000/mountain.png">
+            </button>
+            <i class="material-icons" *ngIf="!toSkai">check_circle</i>
+            <i class="material-icons" *ngIf="toSkai">panorama_fish_eye</i>
+        </div>
+        
+        <div class="datetime">
+            <button class="btn date" (click)="d.toggle()" type="button">
+                <i class="material-icons">calendar_today</i>
+            </button>
+            <input class="date" 
+            name="dp" [(ngModel)]="inputDate" ngbDatepicker #d="ngbDatepicker" readonly="true">
+        </div>
+        <div class="datetime">
+            <ngb-timepicker [(ngModel)]="inputTime" [minuteStep]=5 name="time" class="time" ></ngb-timepicker>
+        </div>
+        
         <fieldset class="form-group">
-            <label>Date</label>
-            <input type="date" 
-            [ngModel]="trip.date | date:'yyyy-MM-dd'"
-            (ngModel)="trip.date = $event" 
-            name="date" required="required" class="form-control">
+            <label>From</label>
+            <input type="string" [(ngModel)]="trip.startingLocation" name="startingLocation" required="required" class="form-control">
         </fieldset>
         <fieldset class="form-group">
-            <label>Maximum number of passengers</label>
+            <label>To</label>
+            <input type="string" [(ngModel)]="trip.destination" name="destination" required="required" class="form-control">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Seats</label>
             <input type="number" [(ngModel)]="trip.maxPassengers" name="maxPassengers" required="required" class="form-control">
         </fieldset>
         <fieldset class="form-group">
-            <label>Location</label>
-            <input type="string" [(ngModel)]="trip.location" name="location" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
             <label>Comment</label>
-            <input type="text" [(ngModel)]="trip.comment" name="comment" required="required" class="form-control">
+            <input type="text" [(ngModel)]="trip.comment" name="comment" class="form-control">
         </fieldset>
-        <fieldset class="form-group">
-            <label>To Skai?</label>
-            <input type="checkbox" [(ngModel)]="trip.go" name="go" required="required" class="form-control">
-        </fieldset>
-
-        <button type="submit" class="btn btn-success">Save changes</button>
-        <button (click)="discardChanges()" class="btn btn-warning">Discard changes</button>
+        <div id="button-region">
+            <button type="submit" class="btn submit">Save trip</button>
+        </div>
+        <div id="button-region">
+            <button (click)="discardChanges()" class="btn exit">Discard</button>
+            <button (click)="deleteTrip()" class="btn exit">Delete</button>
+        </div>
     </form>
 </div>
 <div class="skai-container" *ngIf="!enableEdit">

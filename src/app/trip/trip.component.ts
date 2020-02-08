@@ -4,6 +4,7 @@ import { Trip } from '../list-trips/list-trips.component';
 import { TripDataService } from '../service/data/trip-data.service';
 import { User, UserDataService } from '../service/data/user-data.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { TimeHelper } from '../helpers/time-helper';
 
 @Component({
   selector: 'app-trip',
@@ -15,7 +16,14 @@ export class TripComponent implements OnInit {
   private id : number;
   private isNew : boolean;
   private enableEdit : boolean = false;
+
+  private toSkai: boolean = true;
+
   private trip : Trip;
+
+  private inputDate = { year: 2020, month: 1, day: 1 };
+  private inputTime = { hour: 12, minute: 0};
+
   private currentUser : User;
   private driverUser : User;
 
@@ -29,9 +37,9 @@ export class TripComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['tripId'];
-    this.currentUser = new User(0, "Placeholder", "", "", "", "", "");
-    this.driverUser = new User(0, "Placeholder", "", "", "", "", "");
-    this.trip = new Trip(0, this.currentUser, new Date(), 3, "", "", true)
+    this.currentUser = new User();
+    this.driverUser = new User();
+    this.trip = new Trip()
     if (this.id != 0) {
       // Trip already exists and needs to be loaded
       this.isNew = false;
@@ -48,15 +56,25 @@ export class TripComponent implements OnInit {
           this.currentUser = response;
           this.driverUser = response;
           this.trip.driver = this.currentUser;
+          
+          let dateTime = TimeHelper.stringToDateTime(this.trip.dateTime.toString());
+          this.inputDate = dateTime.date;
+          this.inputTime = dateTime.time;
+
+          this.trip.startingLocation = this.driverUser.home;
+          this.trip.maxPassengers = this.driverUser.carSeats;
+          
           this.isNew = true;
           this.enableEdit = true;
         }
       )
     }
+
+    this.chooseSkai();
   }
 
   saveChangesToTrip() {
-    console.log('Saving...');
+    this.trip.dateTime = new Date(TimeHelper.dateTimeToString(this.inputDate, this.inputTime));
 
     if (this.isNew) {
       this.tripService.createTrip(this.trip).subscribe()
@@ -73,30 +91,42 @@ export class TripComponent implements OnInit {
   }
 
   loadTrip(id : number) {
-    console.log(`Requesting trip data for trip ${id}`);
     this.tripService.retrieveTrip(id).subscribe(
       trip => {
         this.trip = trip;
-        console.log(trip);
         this.driverUser = this.trip.driver;
+
+        let dateTime = TimeHelper.stringToDateTime(this.trip.dateTime.toString());
+        this.inputDate = dateTime.date;
+        this.inputTime = dateTime.time;
+
+        this.trip.startingLocation = this.driverUser.home;
 
         if (this.driverUser.id == this.currentUser.id) {
           this.enableEdit = true;
-          console.log('Same user');
         }
-        // this.user = this.authenticationService.getLoggedInUser();
-        // this.userService.getUser(this.trip.driverId).subscribe(
-        //   user => {
-        //     this.driverUser = user;
-
-        //     if (this.driverUser.id == this.currentUser.id) {
-        //       this.enableEdit = true;
-        //       console.log('Same user');
-        //     }
-        //   }
-        // );
       },
       error => console.log(error)
     );
+  }
+
+  chooseSkai() {
+    this.toSkai = true;
+    this.trip.destination = "Skai";
+  }
+
+  chooseMountain() {
+    this.toSkai = false;
+    this.trip.destination = "";
+  }
+
+  deleteTrip() {
+    console.log(`Deleting trip ${this.id}`);
+
+    this.tripService.deleteTrip(this.id).subscribe(
+      response => console.log(response),
+      error => console.log(error)
+    );
+    // this.discardChanges()
   }
 }

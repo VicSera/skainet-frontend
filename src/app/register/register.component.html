@@ -31,8 +31,13 @@
             </div>
             <div class="form-group">
                 <label>Usual Location (optional)</label>
-                <input type="text" [(ngModel)]="user.usualLocation"
+                <input type="text" [(ngModel)]="user.home"
                 name="usual_location" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Car Seats (optional)</label>
+                <input type="text" [(ngModel)]="user.carSeats"
+                name="car_seats" class="form-control">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
