@@ -8,7 +8,7 @@ import { User } from './user-data.service';
 })
 export class TripDataService {
 
-  constructor(
+constructor(
     private http : HttpClient
   ) { }
 

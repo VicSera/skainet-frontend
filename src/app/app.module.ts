@@ -17,6 +17,7 @@ import { HttpInterceptorBasicAuthenticationService } from './service/http-interc
 import { RegisterComponent } from './register/register.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     LogoutComponent,
     TripComponent,
-    RegisterComponent
+    RegisterComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,

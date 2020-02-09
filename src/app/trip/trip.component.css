@@ -50,6 +50,9 @@ img {
 .form-control {
     max-width: 70%;
     margin: auto;
+    text-align: center;
+
+    /* border: none; */
 }
 
 .btn.date {
@@ -128,4 +131,40 @@ img {
 #create-trip {
     display: grid;
     grid-template-columns: repeat(2, 50%);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.grid-element {
+    /* border: 1px dashed black; */
+    text-align: center;
+    font-size: 30px;
+
+    padding: 10px;
+}
+
+.btn.join:hover {
+    background-color: purple;
+    font-size: 30px;
+    font-weight: lighter;
+    color: white;
+}
+
+.btn.join {
+    background-color: white;
+    border: 2px dashed purple;
+    font-size: 30px;
+    font-weight: lighter;
+    color: purple;
+}
+
+.btn.back {
+    background-color: white;
+    border: 2px solid purple;
+    font-size: 30px;
+    font-weight: lighter;
+    color: purple;
 }

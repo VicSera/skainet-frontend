@@ -56,26 +56,33 @@
     </form>
 </div>
 <div class="skai-container" *ngIf="!enableEdit">
-    <div>
-        <label>Date</label>
-        <label>{{ trip.date | date:'yyyy-MM-dd' }}</label>
-    </div>
-    <div>
-        <label>Maximum number of passengers</label>
-        <label>{{ trip.maxPassengers }}</label>
-    </div>
-    <div>
-        <label>Location</label>
-        <label>{{ trip.location }}</label>        
-    </div>
-    <div class="form-group">
-        <label>Comment</label>
-        <label>{{ trip.comment }}</label>        
-    </div>
-    <div class="form-group">
-        <label>To Skai?</label>
-        <label>{{ trip.go }}</label>        
-    </div>
+    <div class="grid">
+        <div class="grid-element">
+            <label>Date: </label>
+            <label>{{ dateString }}</label>
+        </div>
+        <div class="grid-element">
+            <label>Time: </label>
+            <label>{{ timeString }}</label>
+        </div>
+        <div class="grid-element">
+            <label>From: </label>
+            <label>{{ trip.startingLocation }}</label>        
+        </div>
+        <div class="grid-element">
+            <label>To: </label>
+            <label>{{ trip.destination }}</label>        
+        </div>
+        <div class="grid-element">
+            <label>Remaining seats: </label>
+            <label>{{ trip.maxPassengers }}</label>
+        </div>
+        <div class="grid-element">
+            <label>Comment</label>
+            <label>{{ trip.comment }}</label>        
+        </div>
 
-    <button (click)="discardChanges()" class="btn btn-warning">Back</button>
+        <button (click)="discardChanges()" class="btn back">Back</button>
+        <button (click)="handleJoinButtonPress()" class="btn join">{{ buttonText }}</button>
+    </div>
 </div>

@@ -34,4 +34,18 @@ export class TimeHelper {
 
         return dateTime;
     }
+
+    static dateToString(date) {
+        let month = new String(date.month).padStart(2, '0');
+        let day = new String(date.day).padStart(2, '0');
+
+        return `${date.year}-${month}-${day}`;
+    }
+
+    static timeToString(time) {
+        let hour = new String(time.hour).padStart(2, '0');
+        let minute = new String(time.minute).padStart(2, '0');
+
+        return `${hour}:${minute}`;
+    }
 }
