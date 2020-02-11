@@ -1,0 +1,33 @@
+.skai-container.request {
+    margin: auto;
+    margin-top: 30px;
+
+    text-align: center;
+    padding: 10px;
+    font-size: 25px;
+}
+
+.btn {
+    color: purple;
+    font-size: 25px;
+    text-align: center;
+}
+
+.material-icons.accept {
+    color: white;
+}
+
+.material-icons.decline {
+    color: purple;
+}
+
+.btn.accept {
+    background: purple;
+    color: white;
+}
+
+.btn.decline {
+    background: white;
+    color: purple;
+    border: 1px solid purple;
+}
