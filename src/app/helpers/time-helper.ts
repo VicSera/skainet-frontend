@@ -1,4 +1,27 @@
 export class TimeHelper {
+    static dateToDateTime(inDate: Date) {
+        let year = inDate.getFullYear();
+        let month = inDate.getMonth();
+        let day = inDate.getDate();
+
+        let hour = inDate.getHours();
+        let minute = inDate.getMinutes();
+        let second = 0;
+
+        let date = {
+            year: year, month: month, day: day
+        };
+        let time = {
+            hour: hour, minute: minute, second: second
+        };
+
+        let dateTime = {
+            date: date, time: time
+        };
+
+        return dateTime;
+    }
+
     static dateTimeToString(date, time) {
         let month = new String(date.month).padStart(2, '0');
         let day = new String(date.day).padStart(2, '0');

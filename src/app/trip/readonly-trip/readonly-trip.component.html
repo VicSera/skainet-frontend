@@ -1,0 +1,31 @@
+<div class="skai-container">
+    <div class="grid">
+        <div class="grid-element">
+            <label>Date: </label>
+            <label>{{ dateString }}</label>
+        </div>
+        <div class="grid-element">
+            <label>Time: </label>
+            <label>{{ timeString }}</label>
+        </div>
+        <div class="grid-element">
+            <label>From: </label>
+            <label>{{ trip.startingLocation }}</label>        
+        </div>
+        <div class="grid-element">
+            <label>To: </label>
+            <label>{{ trip.destination }}</label>        
+        </div>
+        <div class="grid-element">
+            <label>Remaining seats: </label>
+            <label>{{ trip.remainingSeats }}</label>
+        </div>
+        <div class="grid-element">
+            <label>Comment</label>
+            <label>{{ trip.comment }}</label>        
+        </div>
+
+        <button (click)="back()" class="btn back">Back</button>
+        <button (click)="handleJoinButtonPress()" class="btn join">{{ buttonText }}</button>
+    </div>
+</div>

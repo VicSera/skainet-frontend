@@ -1,88 +1,12 @@
 <div id="trip-driver">
-    {{driverUser.firstName}}'s Trip
+    {{trip.driver.firstName}}'s Trip
 </div>
 
-<div class="skai-container" *ngIf="enableEdit">
-    <form (ngSubmit)="!tripForm.invalid && saveChangesToTrip()" #tripForm="ngForm" id="create-trip">
-        <div id="location-picker">
-            <i class="material-icons" *ngIf="toSkai">check_circle</i>
-            <i class="material-icons" *ngIf="!toSkai">panorama_fish_eye</i>
-            <button class="location-option" type="button" (click)="chooseSkai()">
-                <img src="assets/skai_cropped.png">
-            </button>
-        </div>
-        <div id="location-picker">
-            <button class="location-option" type="button" (click)="chooseMountain()">
-                <img src="https://img.icons8.com/ios/100/000000/mountain.png">
-            </button>
-            <i class="material-icons" *ngIf="!toSkai">check_circle</i>
-            <i class="material-icons" *ngIf="toSkai">panorama_fish_eye</i>
-        </div>
-        
-        <div class="datetime">
-            <button class="btn date" (click)="d.toggle()" type="button">
-                <i class="material-icons">calendar_today</i>
-            </button>
-            <input class="date" 
-            name="dp" [(ngModel)]="inputDate" ngbDatepicker #d="ngbDatepicker" readonly="true">
-        </div>
-        <div class="datetime">
-            <ngb-timepicker [(ngModel)]="inputTime" [minuteStep]=5 name="time" class="time" ></ngb-timepicker>
-        </div>
-        
-        <fieldset class="form-group">
-            <label>From</label>
-            <input type="string" [(ngModel)]="trip.startingLocation" name="startingLocation" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>To</label>
-            <input type="string" [(ngModel)]="trip.destination" name="destination" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Seats</label>
-            <input type="number" [(ngModel)]="trip.maxPassengers" name="maxPassengers" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Comment</label>
-            <input type="text" [(ngModel)]="trip.comment" name="comment" class="form-control">
-        </fieldset>
-        <div id="button-region">
-            <button type="submit" class="btn submit">Save trip</button>
-        </div>
-        <div id="button-region">
-            <button (click)="discardChanges()" class="btn exit">Discard</button>
-            <button (click)="deleteTrip()" class="btn exit">Delete</button>
-        </div>
-    </form>
+<div *ngIf="enableEdit" class="editable-div">
+    <app-request-panel [tripId]="id"></app-request-panel>
+    <app-editable-trip *ngIf="loaded" [trip]="trip" [user]="user"></app-editable-trip>
+    <div></div>
 </div>
-<div class="skai-container" *ngIf="!enableEdit">
-    <div class="grid">
-        <div class="grid-element">
-            <label>Date: </label>
-            <label>{{ dateString }}</label>
-        </div>
-        <div class="grid-element">
-            <label>Time: </label>
-            <label>{{ timeString }}</label>
-        </div>
-        <div class="grid-element">
-            <label>From: </label>
-            <label>{{ trip.startingLocation }}</label>        
-        </div>
-        <div class="grid-element">
-            <label>To: </label>
-            <label>{{ trip.destination }}</label>        
-        </div>
-        <div class="grid-element">
-            <label>Remaining seats: </label>
-            <label>{{ trip.maxPassengers }}</label>
-        </div>
-        <div class="grid-element">
-            <label>Comment</label>
-            <label>{{ trip.comment }}</label>        
-        </div>
-
-        <button (click)="discardChanges()" class="btn back">Back</button>
-        <button (click)="handleJoinButtonPress()" class="btn join">{{ buttonText }}</button>
-    </div>
+<div *ngIf="!enableEdit">
+    <app-readonly-trip *ngIf="loaded" [trip]="trip" [user]="user"></app-readonly-trip>
 </div>

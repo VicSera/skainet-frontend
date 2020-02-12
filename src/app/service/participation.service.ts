@@ -30,6 +30,10 @@ export class ParticipationService {
     return this.http.get<JoinRequest[]>(`${environment.apiUrl}/users/${userId}/in-requests`);
   }
 
+  getRequestsForTrip(tripId: number) {
+    return this.http.get<Map<string, User[]>>(`${environment.apiUrl}/trips/${tripId}/requests`);
+  }
+
   acceptRequest(userId: number, tripId: number) {
     return this.http.put(`${environment.apiUrl}/participations/${userId}/${tripId}/accept`, {})
   }

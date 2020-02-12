@@ -18,6 +18,9 @@ import { RegisterComponent } from './register/register.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RequestsComponent } from './requests/requests.component';
+import { EditableTripComponent } from './trip/editable-trip/editable-trip.component';
+import { ReadonlyTripComponent } from './trip/readonly-trip/readonly-trip.component';
+import { RequestPanelComponent } from './trip/request-panel/request-panel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { RequestsComponent } from './requests/requests.component';
     LogoutComponent,
     TripComponent,
     RegisterComponent,
-    RequestsComponent
+    RequestsComponent,
+    EditableTripComponent,
+    ReadonlyTripComponent,
+    RequestPanelComponent
   ],
   imports: [
     BrowserModule,

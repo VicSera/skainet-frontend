@@ -1,0 +1,42 @@
+<div class="skai-container">
+    Requests
+    <div class="request-group" *ngIf="waitingUsers.length > 0">
+        <div class="header">
+            Waiting
+        </div>
+        <div *ngFor="let user of waitingUsers">
+            <i class="material-icons">person</i>
+            {{ user.username }}
+            <button (click)="accept(user.id)">
+                <i class="material-icons">check</i>
+            </button>
+            <button (click)="decline(user.id)">
+                <i class="material-icons">clear</i>
+            </button>
+        </div>
+    </div>
+    <div class="request-group" *ngIf="acceptedUsers.length > 0">
+        <div class="header">
+            Accepted
+        </div>
+        <div *ngFor="let user of acceptedUsers">
+            <i class="material-icons">person</i>
+            {{ user.username }}
+            <button (click)="decline(user.id)">
+                <i class="material-icons">clear</i>
+            </button>
+        </div>
+    </div>
+    <div class="request-group" *ngIf="declinedUsers.length > 0">
+        <div class="header">
+            Declined
+        </div>
+        <div *ngFor="let user of declinedUsers">
+            <i class="material-icons">person</i>
+            {{ user.username }}
+            <button (click)="accept(user.id)">
+                <i class="material-icons">check</i>
+            </button>
+        </div>
+    </div>
+</div>
