@@ -12,17 +12,17 @@ import { TimeHelper } from 'src/app/helpers/time-helper';
 })
 export class EditableTripComponent implements OnInit {
 
-  @Input() private trip : Trip;
-  @Input() private user: User;
+  @Input() public trip : Trip;
+  @Input() public user: User;
 
-  private toSkai: boolean = true;
+  public toSkai: boolean = true;
 
-  private inputDate = { year: 2020, month: 1, day: 1 };
-  private inputTime = { hour: 12, minute: 0};
+  public inputDate = { year: 2020, month: 1, day: 1 };
+  public inputTime = { hour: 12, minute: 0};
 
   constructor(
-    private tripService : TripDataService,
-    private router : Router
+    public tripService : TripDataService,
+    public router : Router
   ) { }
 
   ngOnInit() {

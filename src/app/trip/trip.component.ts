@@ -15,18 +15,18 @@ import { RequestStatus } from '../enums/request-status.enum';
 })
 export class TripComponent implements OnInit {
 
-  private id : number;
+  public id : number;
 
-  private enableEdit : boolean = false;
-  private loaded = false;
+  public enableEdit : boolean = false;
+  public loaded = false;
 
-  private trip : Trip = new Trip();
-  private user: User = new User();
+  public trip : Trip = new Trip();
+  public user: User = new User();
 
   constructor(
-    private tripService : TripDataService,
-    private authenticationService : AuthenticationService,
-    private route : ActivatedRoute
+    public tripService : TripDataService,
+    public authenticationService : AuthenticationService,
+    public route : ActivatedRoute
   ) { }
 
   ngOnInit() {

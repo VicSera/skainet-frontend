@@ -11,10 +11,10 @@ import { User } from '../service/data/user-data.service';
 })
 export class RequestsComponent implements OnInit {
 
-  private user = new User()
+  public user = new User()
 
   constructor(
-    private authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {

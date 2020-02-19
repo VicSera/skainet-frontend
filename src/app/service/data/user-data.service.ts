@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export class User {
   constructor(
@@ -7,7 +8,7 @@ export class User {
     public firstName : string = "",
     public lastName : string = "",
     public username : string = "",
-    password : string = "",
+    public password : string = "",
     public phoneNumber : string = "",
     public home : string = "",
     public carSeats : number = 0
@@ -24,12 +25,12 @@ export class UserDataService {
   ) { }
 
   getUser(id) {
-    return this.http.get<User>(`http://localhost:8080/users/${id}`);
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
   addUser(user : User) {
     delete user.id;
 
-    return this.http.post<User>('http://localhost:8080/users', user);
+    return this.http.post<User>(`${environment.apiUrl}/users`, user);
   }
 }

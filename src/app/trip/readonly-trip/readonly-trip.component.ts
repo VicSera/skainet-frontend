@@ -15,19 +15,19 @@ import { TimeHelper } from 'src/app/helpers/time-helper';
 })
 export class ReadonlyTripComponent implements OnInit {
 
-  @Input() private trip : Trip;
-  @Input() private user: User;
+  @Input() public trip : Trip;
+  @Input() public user: User;
 
-  private dateString;
-  private timeString;
+  public dateString;
+  public timeString;
 
-  private buttonText = 'Join';
-  private requestStatus = RequestStatus.NONE;
+  public buttonText = 'Join';
+  public requestStatus = RequestStatus.NONE;
 
   constructor(
-    private participationService: ParticipationService,
-    private authenticationService : AuthenticationService,
-    private router : Router
+    public participationService: ParticipationService,
+    public authenticationService : AuthenticationService,
+    public router : Router
   ) { }
 
   ngOnInit() {

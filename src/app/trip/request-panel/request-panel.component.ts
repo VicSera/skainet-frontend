@@ -8,14 +8,14 @@ import { ParticipationService } from 'src/app/service/participation.service';
 })
 export class RequestPanelComponent implements OnInit {
 
-  @Input() tripId: number;
+  @Input() public tripId: number;
 
-  private waitingUsers = [];
-  private acceptedUsers = [];
-  private declinedUsers = [];
+  public waitingUsers = [];
+  public acceptedUsers = [];
+  public declinedUsers = [];
 
   constructor(
-    private participationService: ParticipationService
+    public participationService: ParticipationService
   ) { }
 
   ngOnInit() {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Trip } from 'src/app/list-trips/list-trips.component';
 import { User } from './user-data.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +14,24 @@ constructor(
   ) { }
 
   retrieveAllTrips() {
-    return this.http.get<Trip[]>(`http://localhost:8080/trips`);
+    return this.http.get<Trip[]>(`${environment.apiUrl}/trips`);
   }
 
   retrieveTrip(tripId) {
-    return this.http.get<Trip>(`http://localhost:8080/trips/${tripId}`);
+    return this.http.get<Trip>(`${environment.apiUrl}/trips/${tripId}`);
   }
 
   deleteTrip(tripId) {
-    return this.http.delete(`http://localhost:8080/trips/${tripId}`);
+    return this.http.delete(`${environment.apiUrl}/trips/${tripId}`);
   }
 
   updateTrip(trip : Trip) {
-    return this.http.put<Trip>(`http://localhost:8080/trips/${trip.id}`, trip);
+    return this.http.put<Trip>(`${environment.apiUrl}/trips/${trip.id}`, trip);
   }
 
   createTrip(trip : Trip) {
     delete trip.id;
 
-    return this.http.post<Trip>('http://localhost:8080/trips', trip);
+    return this.http.post<Trip>(`${environment.apiUrl}/trips`, trip);
   }
 }

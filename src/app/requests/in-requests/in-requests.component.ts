@@ -10,11 +10,11 @@ import { ParticipationService } from 'src/app/service/participation.service';
 })
 export class InRequestsComponent implements OnInit {
 
-  @Input() private user: User
-  private requests: JoinRequest[]
+  @Input() public user: User
+  public requests: JoinRequest[]
 
   constructor(
-    private participationService: ParticipationService
+    public participationService: ParticipationService
   ) { }
 
   ngOnInit() {

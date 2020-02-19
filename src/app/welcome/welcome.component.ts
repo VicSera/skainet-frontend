@@ -11,8 +11,8 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  private user : User;
-  private name : String;
+  public user : User;
+  public name : String;
 
   constructor(
     private route: ActivatedRoute,

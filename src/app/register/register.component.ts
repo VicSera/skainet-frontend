@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  private user : User;
+  public user : User;
 
   constructor(
-    private router : Router,
-    private userService : UserDataService
+    public router : Router,
+    public userService : UserDataService
   ) { }
 
   ngOnInit() {
