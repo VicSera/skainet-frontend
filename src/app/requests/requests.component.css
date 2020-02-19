@@ -31,3 +31,9 @@
     color: purple;
     border: 1px solid purple;
 }
+
+#divider {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 30px;
+}

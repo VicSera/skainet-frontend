@@ -11,44 +11,15 @@ import { User } from '../service/data/user-data.service';
 })
 export class RequestsComponent implements OnInit {
 
-  // private requests: JoinRequest[]
-  private requests: JoinRequest[] = []
+  private user = new User()
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private participationService: ParticipationService
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this.refresh();
-  }
-
-  refresh() {
     this.authenticationService.getLoggedInUser().subscribe(
-      user => {
-        this.getIncomingRequestsForUser(user);
-      }
+      user => this.user = user
     )
   }
-
-  getIncomingRequestsForUser(user: User) {
-    this.participationService.getIncomingRequests(user.id).subscribe(
-      requests => this.requests = requests
-    )
-  }
-
-  acceptRequest(userId: number, tripId: number) {
-    console.log('Accept');
-    this.participationService.acceptRequest(userId, tripId).subscribe(
-      response => this.refresh()
-    );
-  }
-
-  declineRequest(userId: number, tripId: number) {
-    console.log('Decline');
-    this.participationService.declineRequest(userId, tripId).subscribe(
-      response => this.refresh()
-    );
-  }
-
 }

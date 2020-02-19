@@ -21,6 +21,8 @@ import { RequestsComponent } from './requests/requests.component';
 import { EditableTripComponent } from './trip/editable-trip/editable-trip.component';
 import { ReadonlyTripComponent } from './trip/readonly-trip/readonly-trip.component';
 import { RequestPanelComponent } from './trip/request-panel/request-panel.component';
+import { InRequestsComponent } from './requests/in-requests/in-requests.component';
+import { OutRequestsComponent } from './requests/out-requests/out-requests.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RequestPanelComponent } from './trip/request-panel/request-panel.compon
     RequestsComponent,
     EditableTripComponent,
     ReadonlyTripComponent,
-    RequestPanelComponent
+    RequestPanelComponent,
+    InRequestsComponent,
+    OutRequestsComponent
   ],
   imports: [
     BrowserModule,

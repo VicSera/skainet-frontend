@@ -1,11 +1,6 @@
 #main-body {
-    /* background: rgb(204,70,252); */
-    /* background: linear-gradient(, #d340e6 0%, #085fece8 100%); */
-    /* background: linear-gradient(to bottom right, #9432a2 0%, #3eb4e6 33%, #09a1e0 66%) */
-
-    background: rgb(148,50,162);
+    /* background: rgb(86, 19, 131); */
     background: linear-gradient(138deg, rgba(148,50,162,1) 0%, rgba(78,59,199,1) 50%, rgba(9,161,224,1) 100%);
-    /* background: radial-gradient(circle, #d340e6 0%, #085fece8 100%); */
 }
 
 * {
