@@ -1,26 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export class User {
   constructor(
-    public id : number,
-    public firstName : String,
-    lastName : String,
-    username : String,
-    password : String,
-    phoneNumber : String,
-    usualLocation : String
-  ) {}
-}
-
-export class UserWithoutId {
-  constructor(
-    firstName : String,
-    lastName : String,
-    username : String,
-    password : String,
-    phoneNumber : String,
-    usualLocation : String
+    public id : number = 0,
+    public firstName : string = "",
+    public lastName : string = "",
+    public username : string = "",
+    public password : string = "",
+    public phoneNumber : string = "",
+    public home : string = "",
+    public carSeats : number = 0
   ) {}
 }
 
@@ -34,10 +25,12 @@ export class UserDataService {
   ) { }
 
   getUser(id) {
-    return this.http.get<User>(`http://localhost:8080/users/${id}`);
+    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
-  addUser(user : UserWithoutId) {
-    return this.http.post<User>('http://localhost:8080/users', user);
+  addUser(user : User) {
+    delete user.id;
+
+    return this.http.post<User>(`${environment.apiUrl}/users`, user);
   }
 }

@@ -1,58 +1,12 @@
-<h1>{{driverUser.firstName}}'s Trip</h1>
-
-<div class="container" *ngIf="enableEdit">
-    <form (ngSubmit)="!tripForm.invalid && saveChangesToTrip()" #tripForm="ngForm">
-        <fieldset class="form-group">
-            <label>Date</label>
-            <input type="date" 
-            [ngModel]="trip.date | date:'yyyy-MM-dd'"
-            (ngModel)="trip.date = $event" 
-            name="date" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Maximum number of passengers</label>
-            <input type="number" [(ngModel)]="trip.maxPassengers" name="maxPassengers" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Location</label>
-            <input type="string" [(ngModel)]="trip.location" name="location" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Comment</label>
-            <input type="text" [(ngModel)]="trip.comment" name="comment" required="required" class="form-control">
-        </fieldset>
-        <fieldset class="form-group">
-            <label>To Skai?</label>
-            <input type="checkbox" [(ngModel)]="trip.go" name="go" required="required" class="form-control">
-        </fieldset>
-
-        <button type="submit" class="btn btn-success">Save changes</button>
-        <button (click)="discardChanges()" class="btn btn-warning">Discard changes</button>
-    </form>
+<div id="trip-driver">
+    {{trip.driver.firstName}}'s Trip
 </div>
-<div class="container" *ngIf="!enableEdit">
-    <form>
-        <fieldset class="form-group">
-            <label>Date</label>
-            <label class="form-control">{{ trip.date | date:'yyyy-MM-dd' }}</label>
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Maximum number of passengers</label>
-            <label class="form-control">{{ trip.maxPassengers }}</label>
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Location</label>
-            <label class="form-control">{{ trip.location }}</label>        
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Comment</label>
-            <label class="form-control">{{ trip.comment }}</label>        
-        </fieldset>
-        <fieldset class="form-group">
-            <label>To Skai?</label>
-            <label class="form-control">{{ trip.go }}</label>        
-        </fieldset>
 
-        <button (click)="discardChanges()" class="btn btn-warning">Back</button>
-    </form>
+<div *ngIf="enableEdit" class="editable-div">
+    <app-request-panel [tripId]="id"></app-request-panel>
+    <app-editable-trip *ngIf="loaded" [trip]="trip" [user]="user"></app-editable-trip>
+    <div></div>
+</div>
+<div *ngIf="!enableEdit">
+    <app-readonly-trip *ngIf="loaded" [trip]="trip" [user]="user"></app-readonly-trip>
 </div>

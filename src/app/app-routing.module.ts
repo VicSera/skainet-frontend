@@ -8,6 +8,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RouteGuardService } from './service/route-guard.service';
 import { TripComponent } from './trip/trip.component';
 import { RegisterComponent } from './register/register.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path:'welcome/:name', component: WelcomeComponent, canActivate: [RouteGuardService] },
   { path:'trips', component: ListTripsComponent, canActivate: [RouteGuardService] },
   { path:'trips/:tripId' , component: TripComponent, canActivate: [RouteGuardService] },
+  { path:'requests' , component: RequestsComponent, canActivate: [RouteGuardService] },
+
   
   { path:'**', component: ErrorComponent }
 ];

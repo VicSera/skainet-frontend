@@ -1,0 +1,4 @@
+<div id="divider">
+    <app-in-requests *ngIf="user.id != 0" [user]="user"></app-in-requests>
+    <app-out-requests *ngIf="user.id != 0" [user]="user"></app-out-requests>
+</div>

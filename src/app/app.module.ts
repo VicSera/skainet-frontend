@@ -16,6 +16,14 @@ import { TripComponent } from './trip/trip.component';
 import { HttpInterceptorBasicAuthenticationService } from './service/http-interceptor-basic-authentication.service';
 import { RegisterComponent } from './register/register.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RequestsComponent } from './requests/requests.component';
+import { EditableTripComponent } from './trip/editable-trip/editable-trip.component';
+import { ReadonlyTripComponent } from './trip/readonly-trip/readonly-trip.component';
+import { RequestPanelComponent } from './trip/request-panel/request-panel.component';
+import { InRequestsComponent } from './requests/in-requests/in-requests.component';
+import { OutRequestsComponent } from './requests/out-requests/out-requests.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +35,20 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     LogoutComponent,
     TripComponent,
-    RegisterComponent
+    RegisterComponent,
+    RequestsComponent,
+    EditableTripComponent,
+    ReadonlyTripComponent,
+    RequestPanelComponent,
+    InRequestsComponent,
+    OutRequestsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     {

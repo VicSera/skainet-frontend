@@ -2,16 +2,18 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TripDataService } from '../service/data/trip-data.service';
 import { Router } from '@angular/router';
 import { User } from '../service/data/user-data.service';
+import { Time } from '@angular/common';
 
 export class Trip {
   constructor(
-    public id : number,
-    public driver : User,
-    public date: Date,
-    public maxPassengers: number,
-    public location: string,
-    public comment: string,
-    public go: boolean
+    public id : number = 0,
+    public driver : User = new User(),
+    public dateTime: Date = new Date(),
+    public maxPassengers: number = 0,
+    public remainingSeats: number = 0,
+    public startingLocation: string = "",
+    public destination: string = "",
+    public comment: string = ""
   ) {}
 }
 

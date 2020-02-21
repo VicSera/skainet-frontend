@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Trip } from '../list-trips/list-trips.component';
 import { TripDataService } from '../service/data/trip-data.service';
 import { User, UserDataService } from '../service/data/user-data.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { TimeHelper } from '../helpers/time-helper';
+import { ParticipationService } from '../service/participation.service';
+import { RequestStatus } from '../enums/request-status.enum';
 
 @Component({
   selector: 'app-trip',
@@ -12,89 +15,59 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class TripComponent implements OnInit {
 
-  private id : number;
-  private isNew : boolean;
-  private enableEdit : boolean = false;
-  private trip : Trip;
-  private currentUser : User;
-  private driverUser : User;
+  public id : number;
+
+  public enableEdit : boolean = false;
+  public loaded = false;
+
+  public trip : Trip = new Trip();
+  public user: User = new User();
 
   constructor(
-    private tripService : TripDataService,
-    private userService : UserDataService,
-    private authenticationService : AuthenticationService,
-    private route : ActivatedRoute,
-    private router : Router
+    public tripService : TripDataService,
+    public authenticationService : AuthenticationService,
+    public route : ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['tripId'];
-    this.currentUser = new User(0, "Placeholder", "", "", "", "", "");
-    this.driverUser = new User(0, "Placeholder", "", "", "", "", "");
-    this.trip = new Trip(0, this.currentUser, new Date(), 3, "", "", true)
-    if (this.id != 0) {
-      // Trip already exists and needs to be loaded
-      this.isNew = false;
-      this.authenticationService.getLoggedInUser().subscribe(
-        user => {
-          this.currentUser = user;
+
+    this.authenticationService.getLoggedInUser().subscribe(
+      user => {
+        this.user = user;
+
+        if (this.id != 0) {
+          // Trip already exists and needs to be loaded
           this.loadTrip(this.id);
         }
-      )
-    }
-    else {
-      this.authenticationService.getLoggedInUser().subscribe(
-        response => {
-          this.currentUser = response;
-          this.driverUser = response;
-          this.trip.driver = this.currentUser;
-          this.isNew = true;
-          this.enableEdit = true;
+        else {
+          // Otherwise create a new trip
+          this.newTrip();
         }
-      )
-    }
+      }
+    )
   }
 
-  saveChangesToTrip() {
-    console.log('Saving...');
+  newTrip() {
+      this.trip.driver = this.user;
 
-    if (this.isNew) {
-      this.tripService.createTrip(this.trip).subscribe()
-    }
-    else {
-      this.tripService.updateTrip(this.trip).subscribe()
-    }
-
-    this.router.navigate(['/trips']);
-  }
-
-  discardChanges() {
-    this.router.navigate(['/trips']);
+      this.trip.startingLocation = this.trip.driver.home;
+      this.trip.maxPassengers = this.trip.driver.carSeats;
+      
+      this.enableEdit = true;
+      this.loaded = true;
   }
 
   loadTrip(id : number) {
-    console.log(`Requesting trip data for trip ${id}`);
     this.tripService.retrieveTrip(id).subscribe(
       trip => {
         this.trip = trip;
-        console.log(trip);
-        this.driverUser = this.trip.driver;
 
-        if (this.driverUser.id == this.currentUser.id) {
+        if (this.trip.driver.id == this.user.id) {
           this.enableEdit = true;
-          console.log('Same user');
         }
-        // this.user = this.authenticationService.getLoggedInUser();
-        // this.userService.getUser(this.trip.driverId).subscribe(
-        //   user => {
-        //     this.driverUser = user;
 
-        //     if (this.driverUser.id == this.currentUser.id) {
-        //       this.enableEdit = true;
-        //       console.log('Same user');
-        //     }
-        //   }
-        // );
+        this.loaded = true;
       },
       error => console.log(error)
     );
