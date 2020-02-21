@@ -1,5 +1,5 @@
 <div class="skai-container">
-    <div *ngFor="let request of requests">
-        {{ request.user.username }}
+    <div *ngFor="let request of requests" class="request">
+        {{ request.user.username }}: {{ request.trip.startingLocation }} -> {{ request.trip.destination }}
     </div>
 </div>

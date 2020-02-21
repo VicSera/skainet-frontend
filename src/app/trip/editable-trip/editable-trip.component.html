@@ -4,12 +4,12 @@
             <i class="material-icons" *ngIf="toSkai">check_circle</i>
             <i class="material-icons" *ngIf="!toSkai">panorama_fish_eye</i>
             <button class="location-option" type="button" (click)="chooseSkai()">
-                <img src="assets/skai_cropped.png">
+                <img src="assets/skai_cropped_onecolor.png">
             </button>
         </div>
         <div id="location-picker">
             <button class="location-option" type="button" (click)="chooseMountain()">
-                <img src="https://img.icons8.com/ios/100/000000/mountain.png">
+                <img src="assets/mountain.png">
             </button>
             <i class="material-icons" *ngIf="!toSkai">check_circle</i>
             <i class="material-icons" *ngIf="toSkai">panorama_fish_eye</i>
@@ -32,7 +32,8 @@
         </fieldset>
         <fieldset class="form-group">
             <label>To</label>
-            <input type="string" [(ngModel)]="trip.destination" name="destination" required="required" class="form-control">
+            <input *ngIf="!toSkai" type="string" [(ngModel)]="trip.destination" name="destination" required="required" class="form-control">
+            <input *ngIf="toSkai" disabled type="string" [(ngModel)]="trip.destination" name="destination" required="required" class="form-control">
         </fieldset>
         <fieldset class="form-group">
             <label>Seats</label>
